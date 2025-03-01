@@ -73,5 +73,5 @@ def principal():
 
         elif opcion == 4:
             texto =input("Ingresa un texto terminado con un punto: ")
-        else: print("Volver a ingresar: ")
+        else: print("Volver a ingresara: ")
 principal()
