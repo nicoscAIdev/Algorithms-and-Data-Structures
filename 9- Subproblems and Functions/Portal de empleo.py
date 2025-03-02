@@ -1,10 +1,26 @@
-#Un conocido portal de empleo requiere un programa para validar las búsquedas que se cargan en su página. Por cada
-#búsqueda se requiere:
-#CUIT, Descripción de la búsqueda, Salario ofrecido.
+# Un conocido portal de empleo requiere un programa para validar las búsquedas que se cargan en su página.
+# Por cada búsqueda se requiere:
 
-#Si todos los datos son válidos, mostrar el aviso completo. En caso contrario, informar que no es posible mostrarlo.
+# 1. CUIT:
+#    - Validar que sea un texto compuesto por 13 caracteres.
+#    - Debe contener solo números y guiones con el formato: 00-00000000-0.
 
-#Para terminar, consultar al usuario si desea cargar otro aviso o salir del programa
+# 2. Descripción de la búsqueda:
+#    - Debe ser un texto donde cada palabra se separe con un espacio y termine con un punto.
+#    - La descripción debe tener un máximo de 60 caracteres.
+#    - Debe contener al menos 3 palabras.
+#    - Ninguna palabra debe contener dos mayúsculas seguidas.
+
+# 3. Salario ofrecido:
+#    - Debe ser un valor mayor a 0.
+
+# 4. Validación y salida:
+#    - Si todos los datos son válidos, mostrar el aviso completo.
+#    - En caso contrario, informar que no es posible mostrarlo.
+
+# 5. Control de flujo:
+#    - Preguntar al usuario si desea cargar otro aviso o salir del programa.
+
 
 def validar_cuit(cuit):
     digito = 0
