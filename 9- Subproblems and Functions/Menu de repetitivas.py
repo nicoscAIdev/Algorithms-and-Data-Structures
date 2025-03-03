@@ -26,13 +26,17 @@
 #    - Calcular y mostrar qué porcentaje representan sobre el total de palabras del texto.
 
 def tabla():
-    num = int(input("Ingrese un numero de 1 al 10: "))
     vuelta = 0
+    #La var num sera verdadera 
+    num = int(input("Ingrese un numero de 1 al 10: "))
+    while not (1 <= num <= 10):
+        num = int(input("El numero ingresado debe estar dentro del rango de 1 al 10: "))
     if 1 <= num <= 10:
         for i in range (1, 11):
             vuelta += 1
             print(num, "*", vuelta, "=", num * vuelta)
-    else: return False
+    else: 
+        return False 
 
 
 def pedir_numero():
@@ -41,41 +45,46 @@ def pedir_numero():
         num = int(input("Error: Ingrese un número positivo (0 para terminar): "))
     return num
 
-def comparar_AB():
-    a = int(input("Ingrese el un valor positivo para A: "))
-    b = int(input("Ingrese el un valor positivo para B mayor que A: "))
-    multiplo = a
-
-    if a > b:
-        print("El valor de B debe ser mayor que el de A.")
-        return
-    else:
-        while multiplo < b:
-            if b % multiplo == 0:
-                print(multiplo)
-                multiplo += 1
-            else: multiplo += 1
-
+#Se utiliza la func 'pedir_numero()'
 def buscar_mayor_menor():
-
     num = pedir_numero()
     if num == 0:
         print("No se ingresaron números.")
         return
 
-    may = men = num  # Inicializar con el primer número válido
-
+    # Inicializar con el primer número válido
+    may = men = num  
+  
+    #Evalua  quien es el may y men 
+    #Cuando ingresa 0 corta
     while num != 0:
         if num > may:
             may = num
         if num < men:
             men = num
-        num = pedir_numero()  # Pedir el siguiente número
-
+        # Pide el siguiente número a la func
+        num = pedir_numero()  
+    #Ingreso de 0 y salida
     print(f"El número mayor de la sucesión es: {may}, y el menor es: {men}")
 
 def listaMayMen():
     buscar_mayor_menor()
+
+def comparar_AB():
+    a = int(input("Ingrese un valor positivo para A: "))
+    while a <= 0:
+        a = int(input("Error: Ingrese un valor positivo para A: "))
+
+    b = int(input("Ingrese un valor mayor que A para B: "))
+    while b <= a:
+        b = int(input("Error: B debe ser mayor que A. Ingrese B nuevamente: "))
+
+    sumador = 0
+    for multiplo in range(a, b + 1, a):
+        sumador += multiplo
+        print(multiplo)
+
+    print(f"Suma de múltiplos de {a} en el rango [{a}, {b}]: {sumador}")
 
 
 def principal():
