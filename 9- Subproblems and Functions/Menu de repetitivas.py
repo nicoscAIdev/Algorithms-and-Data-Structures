@@ -87,6 +87,41 @@ def comparar_AB():
     print(f"Suma de múltiplos de {a} en el rango [{a}, {b}]: {sumador}")
 
 
+# d) Texto:
+#    - Ingresar por teclado un texto terminado en un punto (validar esto).
+#    - Las palabras deben estar separadas por un único espacio.
+#    - Informar cuántas palabras terminan en vocal.
+#    - Calcular y mostrar qué porcentaje representan sobre el total de palabras del texto.
+
+def texto_ingresado():
+    #Instanciamos las variables
+    palabra = contVocal = contCaracter = 0
+    texto = input("Ingrese el texto y finalice con un punto: ")
+    for i in texto: #Iteramos en el texto
+        contCaracter += 1 
+
+        if i == "." or i == " ":  #Si es un punto o espacio evaluamos
+                                                           
+            if not contCaracter == 1 and caracterAnterior == " ": #Que no sean dos espacios seguidos
+                return print("Las palabras deben estar separaedas por solo un espacio.")
+
+            #Como no es doble espacio, seguimos evaluando    
+            palabra += 1 
+            if caracterAnterior in "aeiouAEIOU": #Evaluamos que el caracter anterior sea vocal
+                    contVocal += 1
+            
+            #Si es un punto terminamos
+            if i == ".":
+                break
+
+        #Actualizamos el valor del caracter anterior
+        caracterAnterior = i
+
+    #Salida:
+    print("La cantidad de palabras ingresadas que terminan en vocal son: ", contVocal)
+    print("El porcentaje entre la cantidad de caracteres y palabras que finalizan con una vocal es de: ", (palabra * contVocal) / 100, "%")
+
+
 def principal():
     while True:
         print("-"*10)
@@ -108,6 +143,5 @@ def principal():
             comparar_AB()
 
         elif opcion == 4:
-            texto =input("Ingresa un texto terminado con un punto: ")
-        else: print("Volver a ingresara: ")
+            texto_ingresado()
 principal()
