@@ -22,3 +22,33 @@
 #    - En la secuencia {1, 2, 3, 6, 4, 7, 8} hay al menos dos números contiguos que son pares (el 6 y el 4), 
 #      y en este caso, el promedio de todos los pares de la secuencia es (2 + 6 + 4 + 8) / 4 = 20 / 4 = 5.
 #    - Pero en esta secuencia: {1, 2, 5, 7, 8, 9, 3, 6, 1} no hay números contiguos pares.
+
+def carga_numeros():
+    pass
+
+def intervalos():
+    pass
+
+def calcular_contiguos_promedios()
+    pass
+
+def principal():
+    while True:
+        print("-"*10)
+        print("1. Cargar secuencia y contar múltiplos")
+        print("2. Analizar números en un intervalo")
+        print("3. Detectar pares contiguos y calcular promedio")
+        print("4. Salir")
+        print("-"*10)
+        opcion = int(input("Ingrese una opción: "))
+
+        if opcion == 1:
+            carga_numeros()
+
+        elif opcion == 2:
+            intervalos()
+
+        elif opcion == 3:
+            calcular_contiguos_promedios()
+
+principal()
