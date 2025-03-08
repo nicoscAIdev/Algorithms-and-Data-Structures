@@ -23,32 +23,62 @@
 #      y en este caso, el promedio de todos los pares de la secuencia es (2 + 6 + 4 + 8) / 4 = 20 / 4 = 5.
 #    - Pero en esta secuencia: {1, 2, 5, 7, 8, 9, 3, 6, 1} no hay números contiguos pares.
 
-def carga_numeros():
-    pass
+
+def multiplo():
+    vueltas = cont_multiplo = 0
+    primer_num = None  # Inicializamos sin valor para asignarlo después
+    lista_numeros = []
+
+    while True:
+        num = int(input("Ingrese un número positivo, ingrese 0 para terminar: "))
+
+        if num < 0:
+            print("El número ingresado debe ser positivo.")
+            continue  # Pedir otro número sin terminar el programa
+
+        if num == 0:
+            break  # Finaliza la carga
+
+        if vueltas == 0:  # Guardamos el primer número ingresado
+            primer_num = num
+        
+        lista_numeros.append(num)
+        vueltas += 1
+
+    # Verificamos que haya al menos un número ingresado antes de calcular los múltiplos
+    if primer_num is not None:
+        cont_multiplo = sum(1 for n in lista_numeros if n % primer_num == 0)
+        print(f"La cantidad de números múltiplos de {primer_num} es: {cont_multiplo}")
+    else:
+        print("No se ingresaron números válidos.")
+
 
 def intervalos():
     pass
 
-def calcular_contiguos_promedios()
+def calcular_contiguos_promedios():
     pass
 
 def principal():
     while True:
-        print("-"*10)
+        print("-" * 10)
         print("1. Cargar secuencia y contar múltiplos")
         print("2. Analizar números en un intervalo")
         print("3. Detectar pares contiguos y calcular promedio")
         print("4. Salir")
-        print("-"*10)
+        print("-" * 10)
         opcion = int(input("Ingrese una opción: "))
 
         if opcion == 1:
-            carga_numeros()
-
+            multiplo()
         elif opcion == 2:
             intervalos()
-
         elif opcion == 3:
             calcular_contiguos_promedios()
+        elif opcion == 4:
+            print("Saliendo del programa...")
+            break
+        else:
+            print("Opción inválida, intente nuevamente.")
 
 principal()
