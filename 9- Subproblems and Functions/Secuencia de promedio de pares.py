@@ -47,17 +47,60 @@ def multiplo():
 
     # Verificamos que haya al menos un número ingresado antes de calcular los múltiplos
     if primer_num is not None:
-        cont_multiplo = sum(1 for n in lista_numeros if n % primer_num == 0)
-        print(f"La cantidad de números múltiplos de {primer_num} es: {cont_multiplo}")
+        for n in lista_numeros:
+            if n % primer_num == 0:
+                cont_multiplo += 1
+         #Salida       
+        print("La cantidad de números múltiplos de ", primer_num, "son: ", cont_multiplo, ".")
     else:
         print("No se ingresaron números válidos.")
 
 
 def intervalos():
-    pass
+    cont_dentro_pq = cont_fuera_pq = cont_pares = 0
+
+    while True:
+        p = int(input("Ingrese el valor del intervalo 'p' (debe ser mayor que 0): "))
+        q = int(input("Ingrese el valor del intervalo 'q' (debe ser mayor que 'p'): "))
+
+        if 0 < p < q:
+            break
+
+    while True:
+        
+        num = int(input("Ingrese el valor del valor de 'n', debe ser positivo: "))
+        
+        if num < 0:
+            print("El número ingresado debe ser positivo.")
+            continue #pide otro num
+
+        if num == 0:
+            break  # Finaliza la carga
+
+        if p <= num <= q:
+            cont_dentro_pq += 1
+            if num % 2 == 0:
+                cont_pares += 1
+        else:
+            cont_fuera_pq += 1
+        
+    print("Los numeros dentro de p y q son: ", cont_dentro_pq, " y dentro de estos, son pares: ", cont_pares, ". La cantidad de numeros fuera de p y q son: ", cont_fuera_pq)
+
+
+#c) Cargar una secuencia de números enteros positivos (validar que efectivamente cada número que se cargue sea 
+#    mayor a cero). La carga debe terminar cuando se ingrese un número mayor a 100.
+#    Determinar si en la secuencia se ingresaron dos números contiguos que sean pares. 
+#    Si es así, mostrar el promedio de todos los números pares que se hayan ingresado. 
+#    Si no, informar que no se ingresaron números contiguos pares. 
+#    Ejemplo:
+#    - En la secuencia {1, 2, 3, 6, 4, 7, 8} hay al menos dos números contiguos que son pares (el 6 y el 4), 
+#      y en este caso, el promedio de todos los pares de la secuencia es (2 + 6 + 4 + 8) / 4 = 20 / 4 = 5.
+#    - Pero en esta secuencia: {1, 2, 5, 7, 8, 9, 3, 6, 1} no hay números contiguos pares.
+
 
 def calcular_contiguos_promedios():
     pass
+
 
 def principal():
     while True:
