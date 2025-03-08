@@ -99,8 +99,35 @@ def intervalos():
 
 
 def calcular_contiguos_promedios():
-    pass
+    es_par = dos_pares = sucesion = False
+    cont_pares = cant_pares = 0
 
+    while True:
+        num = int(input("Ingrese el valor del valor de 'n', debe ser positivo: "))
+        if num < 0:
+            continue
+
+        if num > 100:
+            break
+        
+        if es_par == True:
+            dos_pares = True
+
+        if dos_pares == True:
+            sucesion = True
+
+        if num % 2 == 0:
+            cant_pares += 1
+            cont_pares += num
+            es_par = True
+        else: 
+            es_par = False
+
+
+    if sucesion == True:
+        print("El promedio de numeros pares ingresados es de: ", (cont_pares/cant_pares, "%"))
+    else:
+        print("No se ingresaron dos numeros pares contiguos. ")
 
 def principal():
     while True:
