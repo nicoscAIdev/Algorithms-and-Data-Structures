@@ -1,3 +1,17 @@
+"""
+Desarrollar un programa controlado por menú de opciones, que incluya opciones para realizar las siguientes tareas:
+
+1. Cargar un valor entero n por teclado, validando que sea mayor que 0, y mostrar todos los 
+   números impares y múltiplos de 3 que haya en el intervalo [1, n] (ambos incluidos).
+
+2. Cargar dos valores enteros a y b por teclado, validando que 1 < a < b, y determinar si existe 
+   algún número primo en el intervalo [a, b]. Si existe alguno, mostrar el primero que se encuentre.
+   Si no, informar con un mensaje.
+
+3. Cargar por teclado una secuencia de números uno a uno, cortando el proceso cuando el 
+   número cargado sea el 0. Determinar si todos los números ingresados estaban ordenados de menor a mayor.
+"""
+
 def menu():
 # titulo general...
     print('Menu de opciones y funciones generalizadas')
