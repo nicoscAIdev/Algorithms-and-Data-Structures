@@ -28,19 +28,20 @@ def is_digit(car):
 
 
 def enter_text():
-   cont_palabra = 0
+   wordCont = carCont = 0
    text = input("Ingrese un texto y finalice con un punto: ")
    for car in text:
+      carCont += 1
       if car == " " or car == ".":
-         cont_palabra += 1
-      
+         wordCont += 1
+         if carCont != 0 and is_digit(car): 
+            print("Contiene digitos")
+
       if car == ".":
          break
-      
-      if is_digit(car):
-         print("Contiene digitos")
 
-      
+
+
 def test():
     enter_text()
 test()
