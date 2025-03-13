@@ -17,6 +17,7 @@ c) Determinar la longitud de la palabra más larga del texto.
 
 d) Determinar cuántas palabras contenían la expresión "de", pero solo si aparecía 
    en la primera mitad de la palabra.
+
 """
 
 def is_digit(car):
