@@ -29,17 +29,26 @@ def is_digit(car):
 
 
 def enter_text():
-   wordCont = carCont = 0
+   
+   wordCont = digitCont = 0      # Inicializamos las variables
+   word = ""
+
    text = input("Ingrese un texto y finalice con un punto: ")
    for car in text:
-      carCont += 1
-      if car == " " or car == ".":
-         wordCont += 1
-         if carCont != 0 and is_digit(car): 
-            print("Contiene digitos")
+    word += car  # Construye la palabra
 
-      if car == ".":
-         break
+    if car == " " or car == ".":  # Si llega al final de una palabra
+        wordCont += 1  # Aumenta el contador de palabras
+        
+        # Verifica si la palabra tiene algún número
+        for car in word:
+            if is_digit(car):
+                digitCont += 1
+                break  # Basta encontrar un número, no hace falta seguir
+
+        word = ""  # Reinicia la palabra
+
+   print(f"El contador de palabras es: {wordCont}, y la cantidad de palabras que contenian digitos es de: {digitCont}.")
 
 
 
