@@ -74,10 +74,11 @@ def process_text(text):
         if car == " " or car == ".":
             if has_digit(word):
                 digit_count += 1
-            # b)
+            
+            # b and c)
             small, medium, large, max = car_count(word, small, medium, large, max) 
 
-            # c)
+            # d)
             countDe = de_expression(word, countDe)
             
             # Reiniciamos la var word
