@@ -20,39 +20,39 @@ d) Determinar cuántas palabras contenían la expresión "de", pero solo si apar
 
 """
 
+# Detectamos si es digito
 def is_digit(car):
-   if car in "0123456789":
-      return True
-   else:
-      return False
+    return car in "0123456789"
 
+# Detectamos si la palabra tiene digito
+def has_digit(word):
+    for car in word:
+        if is_digit(car):
+            return True
+    return False
+# Contamos cuantas palabras tienen digito
+def count_words_with_digits(text):
+    digit_count = 0
+    word = ""
 
+    for car in text:
+        word += car
+        if car == " " or car == ".":
+            if has_digit(word):
+                digit_count += 1
+            word = ""
 
+    return digit_count
+
+#  Funcion principal
 def enter_text():
-   
-   wordCont = digitCont = 0      # Inicializamos las variables
-   word = ""
-
-   text = input("Ingrese un texto y finalice con un punto: ")
-   for car in text:
-    word += car  # Construye la palabra
-
-    if car == " " or car == ".":  # Si llega al final de una palabra
-        wordCont += 1  # Aumenta el contador de palabras
-        
-        # Verifica si la palabra tiene algún número
-        for car in word:
-            if is_digit(car):
-                digitCont += 1
-                break  # Basta encontrar un número, no hace falta seguir
-
-        word = ""  # Reinicia la palabra
-
-   print(f"El contador de palabras es: {wordCont}, y la cantidad de palabras que contenian digitos es de: {digitCont}.")
-
-
+    text = input("Ingrese un texto y finalice con un punto: ") #Ingresamos el texto
+    digit_count = count_words_with_digits(text) #Usamos el input 'text' como parametro en la def count_words_with_digits
+    print(f"Cantidad de palabras con al menos un dígito: {digit_count}") #salida
 
 def test():
     enter_text()
+
 test()
+
 
