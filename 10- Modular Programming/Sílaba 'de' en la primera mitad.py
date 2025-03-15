@@ -24,14 +24,34 @@ d) Determinar cuántas palabras contenían la expresión "de", pero solo si apar
 def is_digit(car):
     return car in "0123456789"
 
+
 # Detectamos si la palabra tiene digito
 def has_digit(word):
     for car in word:
         if is_digit(car):
             return True
     return False
+
+
+def car_count(word, small, medium, large, max):
+    length = len(word)
+    if length <= 4:
+        small += 1
+    elif length <= 6:
+        medium += 1
+    else:
+        large += 1
+
+    if length > max:
+        max = length
+
+    # Retornamos
+    return small, medium, large, max
+
+
 # Contamos cuantas palabras tienen digito
-def count_words_with_digits(text):
+def process_text(text):
+    small = medium = large = max = 0
     digit_count = 0
     word = ""
 
@@ -40,19 +60,29 @@ def count_words_with_digits(text):
         if car == " " or car == ".":
             if has_digit(word):
                 digit_count += 1
+            # Actualizamos los contadores de longitud
+            small, medium, large, max = car_count(word, small, medium, large, max)
+            # Reiniciamos la var word 
             word = ""
+    # Retornamos
+    return digit_count, small, medium, large, max
 
-    return digit_count
 
-#  Funcion principal
-def enter_text():
-    text = input("Ingrese un texto y finalice con un punto: ") #Ingresamos el texto
-    digit_count = count_words_with_digits(text) #Usamos el input 'text' como parametro en la def count_words_with_digits
-    print(f"Cantidad de palabras con al menos un dígito: {digit_count}") #salida
+def enter_text(): #  Funcion principal
+    
+    #Ingresamos el texto
+    text = input("Ingrese un texto y finalice con un punto: ")
+
+    #Usamos el input 'text' como parametro en la def 'process_text()'
+    digit_count, small, medium, large, max = process_text(text)
+    
+    # Salida
+    print(f"Cantidad de palabras con al menos un dígito: {digit_count}") 
+    print(f"Palabras pequeñas (≤4 letras): {small}") 
+    print(f"Palabras medianas (5-6 letras): {medium}") 
+    print(f"Palabras grandes (>6 letras): {large}")
+    print(f"La palabra mas larga del texto contenia: {max} caracteres")
 
 def test():
     enter_text()
-
 test()
-
-
