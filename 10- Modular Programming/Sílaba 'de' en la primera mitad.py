@@ -76,7 +76,8 @@ def process_text(text):
                 digit_count += 1
             
             # b and c)
-            small, medium, large, max = car_count(word, small, medium, large, max) 
+            small, medium, large, max = car
+            car_count(word, small, medium, large, max) 
 
             # d)
             countDe = de_expression(word, countDe)
@@ -102,6 +103,7 @@ def enter_text(): #  Funcion principal
     print(f"Palabras grandes (>6 letras): {large}")
     print(f"La palabra mas larga del texto contenia: {max} caracteres")
     print(f"Palabras con De al principio de la palabra: {countDe}")
+
 
 def test():
     enter_text()
