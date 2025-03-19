@@ -15,9 +15,45 @@
 lista = []
 
 # Cargar la lista
-while True:
-    num = int(input("Ingrese un número (0 para terminar): "))
-    if num == 0:
-        break
-    lista.append(num)
-print(lista)
+def listaNums():
+    while True:
+        num = int(input("Ingrese un número (0 para terminar): "))
+        if num == 0:
+            break
+        lista.append(num)
+    return lista
+
+def porcentaje(lista, porc):
+    for num in lista:
+        if num % 2:
+            contPar += 1
+    # Retorna directamente el calculo
+    porc = len(lista) // contPar
+    return porc
+
+def num45(lista, cont45):
+    for num in lista:
+        if int(str(num)[-1]) == 4 or int(str(num)[-1]) == 5:
+            cont45 += 1
+    return cont45
+
+def menorDiv3(lista, numDiv3):
+    while min(lista) % 3 != 0:
+        if lista == []:
+            print("No habia numeros divisibles por 3 en la lista. ")        
+            break
+        lista.remove(min(lista))
+    
+    numDiv3 = min(lista)
+    
+    return numDiv3
+        
+def menorIgual7(lista):
+    for num in lista:
+        if not num <= 7:
+            return False
+        return True
+
+def test():
+    listaNums()
+test()
