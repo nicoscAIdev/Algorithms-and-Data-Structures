@@ -9,3 +9,15 @@
 # c) Determinar el menor de los números ingresados que sean divisibles por 3.
 
 # d) Determinar si la secuencia estaba formada sólo por números menores o iguales que 7.
+
+
+# Inicializar una lista vacía por fuera de la def, para no reiniciar la lista...
+lista = []
+
+# Cargar la lista
+while True:
+    num = int(input("Ingrese un número (0 para terminar): "))
+    if num == 0:
+        break
+    lista.append(num)
+print(lista)
