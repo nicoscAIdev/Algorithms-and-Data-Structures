@@ -12,40 +12,43 @@
 
 
 # Inicializar una lista vacía por fuera de la def, para no reiniciar la lista...
-lista = []
+
 
 # Cargar la lista
 def listaNums():
+    lista = []
     while True:
         num = int(input("Ingrese un número (0 para terminar): "))
         if num == 0:
             break
-        lista.append(num)
-    return lista
+        lista.append(num)  
+    return lista # Retornamos la lista en vez de modificar una global
 
-def porcentaje(lista, porc):
+
+def porcentaje(lista):
+    contPar = 0
+    if not lista:
+        return 0  # Si la lista está vacía, devuelve 0
+    
     for num in lista:
-        if num % 2:
+        if num % 2 == 0:
             contPar += 1
     # Retorna directamente el calculo
-    porc = len(lista) // contPar
+    porc = (contPar / len(lista)) * 100
     return porc
 
-def num45(lista, cont45):
+def num45(lista):
+    cont45 = 0
     for num in lista:
         if int(str(num)[-1]) == 4 or int(str(num)[-1]) == 5:
             cont45 += 1
     return cont45
 
-def menorDiv3(lista, numDiv3):
+def menorDiv3(lista):
     while min(lista) % 3 != 0:
-        if lista == []:
-            print("No habia numeros divisibles por 3 en la lista. ")        
-            break
         lista.remove(min(lista))
-    
     numDiv3 = min(lista)
-    
+    # Retornamos
     return numDiv3
         
 def menorIgual7(lista):
@@ -55,5 +58,17 @@ def menorIgual7(lista):
         return True
 
 def test():
-    listaNums()
+    lista = listaNums()  # Cargamos la lista
+    print("\nResultados:")
+    print(f"Lista ingresada: {lista}")
+    print(f"Porcentaje de números pares: {porcentaje(lista):.2f}%")
+    print(f"Números terminados en 4 o 5: {num45(lista)}")
+    
+    menor_3 = menorDiv3(lista)
+    if menor_3 is None:
+        print("No hay números divisibles por 3 en la lista.")
+    else:
+        print(f"Menor número divisible por 3: {menor_3}")
+
+    print(f"¿Todos los números son menores o iguales a 7? {'Sí' if menorIgual7(lista) else 'No'}")
 test()
