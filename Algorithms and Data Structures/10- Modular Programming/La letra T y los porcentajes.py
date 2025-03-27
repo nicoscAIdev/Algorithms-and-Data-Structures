@@ -19,19 +19,19 @@ def esPar(num):
     else:
         return False
 
-def porc(num):
-    return num
+def porc(cantidad, total):
+    return ((cantidad * 100) / total)
 
 
 def principal():
-    contCar = contWord = cantT = contPalabraAnterior = parYc = 0
+    contCar = contWord = cantT = contPalabraAnterior = parYc = porcentaje = contPalabrasT = anteriorMayor = 0
     comienzaConC = False
 
     texto = input("Ingrese el texto y finalice con un punto: ")
 
 #   Recorremos el input.
     for car in texto:
-        if car != " " or car != ".":
+        if car != " " and car != ".":
             contCar += 1
         
         #   Evaluamos posibles errores
@@ -43,29 +43,40 @@ def principal():
                     print("Error... El primer caracter no debe ser un punto.")
                     break
                 
-                elif car == "c":
+                elif car.lower() == "c":
                     comienzaConC = True
 
         #   Evaluamos que el caracter sea una igual a una "t"
-            if car.lower() == "t":
+            if car == "t":
                 cantT += 1 
+        
         else:
             contWord += 1
-            contPalabraAnterior = contCar
-        
+
         #   Punto 1
             if cantT == 1:
                 contPalabrasT += 1
 
         #   Punto 2
-            if contPalabraAnterior > contCar:
+            if contPalabraAnterior < contCar:
                 anteriorMayor += 1
-            
-        #   Reiniciamos
-            contPalabraAnterior = contCar
 
         #   Punto 3
             if esPar(contCar) and comienzaConC == True:
                 parYc += 1
-            else: 
-                comienzaConC = False
+
+        #   Punto 4
+            porcentaje = porc(contPalabrasT, contWord)
+
+        #   Reiniciamos
+            contPalabraAnterior = contCar
+            comienzaConC = False
+            contCar = cantT = 0
+
+    #   Salida: 
+    print(f"La cantidad de palabras que solo aparece la letra T es de: {contPalabrasT}")
+    print(f"La cantidad de palabras que sus letras son en mayot cantidad que la anterior es de: {anteriorMayor}")
+    print(f"La cantidad de palabras que su cant. de palabras es par y comienza con la letra C, es de: {parYc}")
+    print(f"El porcentaje entre la cantidad de palabras que solo tenia una letra T por sobre las demas palabras es de: {porcentaje}")
+
+principal()
