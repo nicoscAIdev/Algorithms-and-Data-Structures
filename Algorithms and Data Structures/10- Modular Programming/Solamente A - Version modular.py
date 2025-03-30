@@ -60,5 +60,4 @@ def test():
     print('Las palabras cuya única vocal es la "a" son:', palabras_soloa)
     porcentaje = calcular_porcentaje(palabras_soloa, palabras)
     print('El porcentaje de palabras con solo "a" es:', porcentaje, '%')
-
 test()
