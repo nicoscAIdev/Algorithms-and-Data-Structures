@@ -21,13 +21,29 @@ El programa debe:
 """
 
 
+def es_vocal(car):
+    if car.lower() in  "aeiou": 
+        return True
+
+
+def es_digt(car):
+    if car in "1234567890":
+        return True
+
+
+def fin_de_palabra(car):
+    if car == " " or car == ".":
+        return True
+
+
 def contar_palabras_con_vocales(text):
     cont_palabras_vocal = cont_vocal = cant_palabra = 0
 
     for car in text:
-        if car in "aeiouAEIOU":
+        if es_vocal(car):
             cont_vocal += 1
-        elif car == " " or car == ".":  # Fin de palabra
+
+        elif fin_de_palabra(car):  # Fin de palabra
             cant_palabra += 1
 
             if cont_vocal == 3:
@@ -45,14 +61,14 @@ def proces_text(text):
 
     for car in text:
 
-        if car in "123456789":
+        if es_digt(car):
             num_exist = True
        
         if car.isalpha():
             cont_letras += 1
 
-        elif car == " " or car == ".":  # Fin de palabra
-            if num_exist == True and cont_letras >= 4:
+        elif fin_de_palabra(car):  # Fin de palabra
+            if num_exist == True and cont_letras > 4:
                 digito_y_cuatro += 1
 
             cont_letras = 0  # Reiniciar contador para la siguiente palabra
@@ -74,6 +90,6 @@ def principal():
     porc = porcentaje(digito_y_cuatro, cant_palabra)
 
     print(cont_palabras_vocal)
-    print(f"{porc:.2f}%")
+    print(f"{porc:.2f} %")
 
 principal()
