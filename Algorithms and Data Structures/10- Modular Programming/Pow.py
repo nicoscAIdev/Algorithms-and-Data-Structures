@@ -54,7 +54,6 @@ def contar_palabras_con_vocales(text):
     return cont_palabras_vocal, cant_palabra
 
 
-
 def proces_text(text):
     cont_letras = digito_y_cuatro = 0
     num_exist = False
@@ -91,5 +90,6 @@ def principal():
 
     print(cont_palabras_vocal)
     print(f"{porc:.2f} %")
+
 
 principal()
