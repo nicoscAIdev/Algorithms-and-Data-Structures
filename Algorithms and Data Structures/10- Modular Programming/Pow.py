@@ -36,7 +36,11 @@ def fin_de_palabra(car):
         return True
 
 
-def contar_palabras_con_vocales(text):
+def porcentaje(cantidad, base):
+    return (cantidad * 100) / base
+
+
+def punto1_palabras_con_vocales(text):
     cont_palabras_vocal = cont_vocal = cant_palabra = 0
 
     for car in text:
@@ -54,7 +58,7 @@ def contar_palabras_con_vocales(text):
     return cont_palabras_vocal, cant_palabra
 
 
-def proces_text(text):
+def punto2_digito_Y_cuatro(text):
     cont_letras = digito_y_cuatro = 0
     num_exist = False
 
@@ -76,20 +80,28 @@ def proces_text(text):
     return digito_y_cuatro
 
 
-def porcentaje(cantidad, base):
-    return (cantidad * 100) / base
+def punto3(text):
+    cont_car = 0
+
+    for car in text:
+        primer_car += 1
+
+        if cont_car == 1:
+            primer_car = car
+
 
 
 def principal():
     text = input("Ingrese texto: ")
 
-    cont_palabras_vocal, cant_palabra = contar_palabras_con_vocales(text)
-    digito_y_cuatro = proces_text(text)
-
+#   Igualamos a una Var local las salidas de las funciones
+    cont_palabras_vocal, cant_palabra = punto1_palabras_con_vocales(text) 
+    digito_y_cuatro = punto2_digito_Y_cuatro(text)
     porc = porcentaje(digito_y_cuatro, cant_palabra)
 
-    print(cont_palabras_vocal)
-    print(f"{porc:.2f} %")
+#   Salida
+    print(f"La cantidad de palabras que tuvieron exactamente 3 vocales fueron: {cont_palabras_vocal}")
+    print(f"El porcentaje de palabras que tuvieron algún dígito ('0' al '9') y más de 4 letras fueron: {porc:.2f} %")
 
 
 principal()
