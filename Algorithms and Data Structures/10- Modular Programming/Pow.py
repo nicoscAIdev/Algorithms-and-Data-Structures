@@ -84,17 +84,19 @@ def punto3_first_car_small_word(text):
     cont_word = word_position = 0
     primer_car = word = proces_word = word_condition =  ""
 
-    for car in text.lower():
-        primer_car = text[0].lower() #Fijarse
-        word += car
+    for car in text:
+        primer_car = text[0].lower()
 
-        if car == " " or car == ".":
+        if not fin_de_palabra(car):
+            word += car.lower()
+
+        else:
             cont_word += 1
             proces_word = word
             word = ""
 
-            if primer_car ==  proces_word[-2]:
-                
+            if primer_car ==  proces_word[-1]:
+
                 if len(proces_word) < len(word_condition) or cont_word == 1:
                     word_condition = proces_word
                     word_position = cont_word
@@ -103,6 +105,8 @@ def punto3_first_car_small_word(text):
 
 
 def principal():
+
+    print(5 * "-","Entrada", 5 * "-")
     text = input("Ingrese texto: ")
 
 #   Igualamos a una Var local las salidas de las funciones
@@ -112,9 +116,12 @@ def principal():
     palabra_mas_corta, posicion_de_palabra = punto3_first_car_small_word(text)
 
 #   Salida
+    print(5 * "-","Salida", 5 * "-")
     print(f"La cantidad de palabras que tuvieron exactamente 3 vocales fueron: {cont_palabras_vocal}")
+    print(20 * "-")
     print(f"El porcentaje de palabras que tuvieron algún dígito ('0' al '9') y más de 4 letras fueron: {porc:.2f} %")
-    print(palabra_mas_corta, posicion_de_palabra)
-
-
+    print(20 * "-")
+    print(f"La palabra más corta es '{palabra_mas_corta}', que esta en la posición {posicion_de_palabra} en el texto.")
+    print(20 * "-")
+    
 principal()
