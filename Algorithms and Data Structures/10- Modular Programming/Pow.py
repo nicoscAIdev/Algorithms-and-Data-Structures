@@ -80,28 +80,49 @@ def punto2_digito_Y_cuatro(text):
     return digito_y_cuatro
 
 
-def punto3_first_car_small_word(text):
+def punto3_first_car_short_word(text):
     cont_word = word_position = 0
-    primer_car = word = proces_word = word_condition =  ""
-
+    primer_car = word = word_condition =  ""
+    primer_car = text[0].lower()    
+    
     for car in text:
-        primer_car = text[0].lower()
 
         if not fin_de_palabra(car):
             word += car.lower()
 
         else:
             cont_word += 1
-            proces_word = word
-            word = ""
 
-            if primer_car ==  proces_word[-1]:
+            if primer_car ==  word[-1]:
 
-                if len(proces_word) < len(word_condition) or cont_word == 1:
-                    word_condition = proces_word
+                if len(word) < len(word_condition) or word_condition == "":
+                    word_condition = word
                     word_position = cont_word
 
+        #   Reiniciamos
+            word = ""
+
     return word_condition, word_position
+
+
+def punto4_media_cant_word(text):
+    word = ""
+    cont_men_word = 0
+
+    for car in text:
+
+        if not fin_de_palabra(car):
+            word += car
+
+        else:
+            mediumWord = len(word) // 2
+            if "men" in word[:mediumWord]:
+                cont_men_word += 1
+        
+        #   Reiniciamos
+            word = ""
+            
+    return cont_men_word
 
 
 def principal():
@@ -113,15 +134,38 @@ def principal():
     cont_palabras_vocal, cant_palabra = punto1_palabras_con_vocales(text) 
     digito_y_cuatro = punto2_digito_Y_cuatro(text)
     porc = porcentaje(digito_y_cuatro, cant_palabra)
-    palabra_mas_corta, posicion_de_palabra = punto3_first_car_small_word(text)
+    palabra_mas_corta, posicion_de_palabra = punto3_first_car_short_word(text)
+    palabras_con_men = punto4_media_cant_word(text)
 
 #   Salida
     print(5 * "-","Salida", 5 * "-")
-    print(f"La cantidad de palabras que tuvieron exactamente 3 vocales fueron: {cont_palabras_vocal}")
-    print(20 * "-")
-    print(f"El porcentaje de palabras que tuvieron algún dígito ('0' al '9') y más de 4 letras fueron: {porc:.2f} %")
-    print(20 * "-")
-    print(f"La palabra más corta es '{palabra_mas_corta}', que esta en la posición {posicion_de_palabra} en el texto.")
-    print(20 * "-")
     
+    if cont_palabras_vocal == 0:
+        print("No se encontraron palabras que tuvieran exactamente 3 vocales. ")
+    else:        
+        print(f"La cantidad de palabras que tuvieron exactamente 3 vocales fueron: {cont_palabras_vocal}")
+    
+    print(20 * "-")
+
+    if porc == 0:
+        print("No hay palabras que cumplan que tengan dígitos de ('0' al '9') y más de 4 letras. ") 
+    else:
+        print(f"El porcentaje de palabras que tuvieron algún dígito ('0' al '9') y más de 4 letras fueron: {porc:.2f} %")
+
+    print(20 * "-")
+
+    if palabra_mas_corta == "" and posicion_de_palabra == 0:
+        print("No hubo palabras que terminen con la primera letra del texto. ")
+    else:
+        print(f"La palabra más corta es '{palabra_mas_corta}', que esta en la posición {posicion_de_palabra} en el texto.")
+    
+    print(20 * "-")
+
+    if palabras_con_men == 0:
+        print("No hubo palabras que contengan 'men' en su primera mitad. ")
+    else:
+        print(f"La cantidad de veces que aparecio 'men' en la primera mitad de las palabras fue de {palabras_con_men}.")
+   
+    print(20 * "-")
+
 principal()
