@@ -80,15 +80,26 @@ def punto2_digito_Y_cuatro(text):
     return digito_y_cuatro
 
 
-def punto3(text):
-    cont_car = 0
+def punto3_first_car_small_word(text):
+    cont_word = word_must_short = word_position = 0
+    primer_car = word = word_condition =  ""
 
     for car in text:
-        primer_car += 1
+        primer_car = text[0]
+        word += car
 
-        if cont_car == 1:
-            primer_car = car
+        if fin_de_palabra(car):
+            cont_word += 1
 
+        if primer_car ==  word[0]:
+            if len(word) > word_must_short or cont_word == 1:
+                    word_condition = word
+                    word_position = cont_word
+    
+    #   Reiniciamos
+        word = ""
+
+    return word_condition, word_position
 
 
 def principal():
@@ -98,10 +109,12 @@ def principal():
     cont_palabras_vocal, cant_palabra = punto1_palabras_con_vocales(text) 
     digito_y_cuatro = punto2_digito_Y_cuatro(text)
     porc = porcentaje(digito_y_cuatro, cant_palabra)
+    palabra_mas_corta, posicion_de_palabra = punto3_first_car_small_word(text)
 
 #   Salida
     print(f"La cantidad de palabras que tuvieron exactamente 3 vocales fueron: {cont_palabras_vocal}")
     print(f"El porcentaje de palabras que tuvieron algún dígito ('0' al '9') y más de 4 letras fueron: {porc:.2f} %")
+    print(palabra_mas_corta, posicion_de_palabra)
 
 
 principal()
