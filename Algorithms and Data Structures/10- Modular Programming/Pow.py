@@ -81,24 +81,23 @@ def punto2_digito_Y_cuatro(text):
 
 
 def punto3_first_car_small_word(text):
-    cont_word = word_most_short = word_position = 0
-    primer_car = word = word_condition =  ""
+    cont_word = word_position = 0
+    primer_car = word = proces_word = word_condition =  ""
 
-    for car in text:
-        primer_car = text[0]
+    for car in text.lower():
+        primer_car = text[0].lower() #Fijarse
         word += car
 
-        if fin_de_palabra(car):
+        if car == " " or car == ".":
+            cont_word += 1
+            proces_word = word
+            word = ""
 
-            if primer_car ==  word[0]:
-                cont_word += 1
-
-                if len(word) < word_most_short or cont_word == 1:
-                    word_most_short = len(word)
-                    word_condition = word
+            if primer_car ==  proces_word[-2]:
+                
+                if len(proces_word) < len(word_condition) or cont_word == 1:
+                    word_condition = proces_word
                     word_position = cont_word
-        
-        word = ""
 
     return word_condition, word_position
 
