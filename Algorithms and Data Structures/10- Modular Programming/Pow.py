@@ -81,7 +81,7 @@ def punto2_digito_Y_cuatro(text):
 
 
 def punto3_first_car_small_word(text):
-    cont_word = word_must_short = word_position = 0
+    cont_word = word_most_short = word_position = 0
     primer_car = word = word_condition =  ""
 
     for car in text:
@@ -89,14 +89,15 @@ def punto3_first_car_small_word(text):
         word += car
 
         if fin_de_palabra(car):
-            cont_word += 1
 
-        if primer_car ==  word[0]:
-            if len(word) > word_must_short or cont_word == 1:
+            if primer_car ==  word[0]:
+                cont_word += 1
+
+                if len(word) < word_most_short or cont_word == 1:
+                    word_most_short = len(word)
                     word_condition = word
                     word_position = cont_word
-    
-    #   Reiniciamos
+        
         word = ""
 
     return word_condition, word_position
