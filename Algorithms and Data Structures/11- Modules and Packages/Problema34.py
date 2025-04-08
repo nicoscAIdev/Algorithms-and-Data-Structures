@@ -7,6 +7,8 @@ def ordenar(n1, n2, ascendent=True):
     if not ascendent: 
         first, second = second, first 
     return first, second 
+
+
 def test(): 
     a = int(input('Ingrese el primer valor:  ')) 
     b = int(input('Ingrese el segundo valor: ')) 
