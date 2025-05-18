@@ -277,3 +277,4 @@ initialize
 	clave := ''.
 	direccionIP := 0.
 	nivelPrivilegios := 0.! !
+
