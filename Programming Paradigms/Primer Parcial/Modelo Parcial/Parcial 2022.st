@@ -198,4 +198,3 @@ numero: anObject
 !Partida methodsFor: 'accessing' stamp: 'Nicosabena 4/17/2025 11:22'!
 cartas
 	^ cartas! !
-
