@@ -20,3 +20,21 @@ parámetro, tales que sean mayores o iguales al valor de referencia min y menore
 iguales al valor de referencia max. Utilizar lista por comprensión.
 Nombre sugerido de la función: funcion3.
 -}
+
+funcion1 codigo 
+	| codigo == 1 = "Paracetamol"
+	| codigo == 2 = "Ibuprofeno"
+	| codigo == 3 = "Salbutamol"
+	| otherwise = "Inexistente" 
+
+funcion2 _ [] = []
+funcion2 ref (x:xs) 
+		    | x > ref   = x : funcion2 ref xs
+    		    | otherwise = funcion2 ref xs
+
+
+
+funcion3 [] = 0
+funcion3 (x:xs)
+    | x >= 10 && x <= 50 = x + funcion3 xs
+    | otherwise          = funcion3 xs
