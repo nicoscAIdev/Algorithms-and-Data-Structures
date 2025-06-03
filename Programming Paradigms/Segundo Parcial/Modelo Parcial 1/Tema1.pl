@@ -44,3 +44,11 @@ operario('ope003','Camila','Juárez').
 % la lista de nombres de los operarios que participaron en esas órdenes.
 % Nombre sugerido: operarios_en_ordenes/2
 
+
+regla1(Orden,Desc,Dia, Mes,Nombre,Apellido,Prom):-
+    tipo_hamburguesa(Cod, Desc,_,_,_,_),
+    orden_elaboración(Orden,Cod, Ope, fecha(Dia,Mes,_),Cant, Tiempo),
+    operario(Ope, Nombre, Apellido),
+    Prom is Tiempo/Cant.
+
+
