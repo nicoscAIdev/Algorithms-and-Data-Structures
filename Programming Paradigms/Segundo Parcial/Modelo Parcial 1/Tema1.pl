@@ -52,3 +52,13 @@ regla1(Orden,Desc,Dia, Mes,Nombre,Apellido,Prom):-
     Prom is Tiempo/Cant.
 
 
+regla2(Ingrediente, Lista):-
+    findall(CodOrden, 
+        ((
+        orden_elaboración(CodOrden, CodigoHamburguesa,_,_,_,_),
+        tipo_hamburguesa(CodigoHamburguesa,_,PesoHamburguesa,_,_,Ingredientes), 
+        member(Ingrediente, Ingredientes),
+        PesoHamburguesa =< 300
+        )),
+        Lista).
+
