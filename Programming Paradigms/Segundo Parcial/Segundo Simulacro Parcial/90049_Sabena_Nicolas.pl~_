@@ -1,0 +1,46 @@
+producto('00001','Shampoo niños',300,250,1,['A','B','C']).
+
+producto('00002','Jabón líquido',500,425,1,['A','B']).
+
+producto('00003','Fragancia floral',400,4800,3,['C']).
+
+producto('00004','Crema hidratante',550,4500,2,['A','C']).
+
+venta('11111','00002','Pérez Juan',fecha(11,05,2022),30,0).
+
+venta('22222','00003','Sarmiento Tomás',fecha(05,04,2022),150,5).
+
+venta('33333','00001','Trotta Paola',fecha(12,05,2022),260,5).
+
+venta('44444','00004','Altamirano Noé',fecha(16,05,2022),50,0).
+
+categoria(1,'Cuidado personal').
+
+categoria(2,'Dermocosmetica').
+
+categoria(3,'Perfumes y fragancias').
+
+% Conocer para una determinada venta de producto cuyo código se deberá especificar,
+% los siguientes datos: cliente, cantidad pedida, denominación del
+% producto y su precio unitario. Predicado sugerido para esta regla
+
+regla1(CodVenta,Cliente,CantPedida,DenomProd,PrecioUnit):-
+     venta(CodVenta,CodProd,Cliente,_,CantPedida,_),
+    producto(CodProd,DenomProd,_,PrecioUnit,_,_).
+
+% Generar una lista con todos los nombres de las categorías de aquellos
+% productos que tengan un precio superior a un determinado valor y cuya
+% cantidad de proveedores sea mayor o igual a 3. Considerar la
+% posibilidad de que la lista generada pueda figurar categorías
+% repetidas, por lo que se deberá evitar esta situación
+
+regla2(Valor,Lista):-
+     findall(Nombre,
+             (   producto(_,_,_,Precio,Categoria,Proovedores),
+                 categoria(Categoria, Nombre),
+                 Precio > Valor,
+                 length(Proovedores, Cant),
+                 Cant >= 3),
+             Lista),
+     sort(Lista,Nombre).
+
