@@ -1,0 +1,38 @@
+% clase(CodigoClase, CodigoReceta, Fecha(D,M,A), ListaDePuestosLibres, Precio, CodigoAula)
+clase(cla1, rec3, fecha(21,5,2022), [3,5,8], 1000, aul1).
+clase(cla2, rec1, fecha(21,5,2022), [2], 1200, aul2).
+clase(cla3, rec1, fecha(22,5,2022), [1,4,7,8], 900, aul3).
+clase(cla4, rec2, fecha(22,5,2022), [], 1200, aul4).
+clase(cla5, rec3, fecha(23,5,2022), [5,9], 800, aul1).
+clase(cla6, rec2, fecha(23,5,2022), [6,10], 900, aul2).
+clase(cla7, rec2, fecha(24,5,2022), [3,6,8], 1200, aul1).
+clase(cla8, rec1, fecha(25,5,2022), [], 1500, aul2).
+clase(cla9, rec2, fecha(25,5,2022), [], 1500, aul3).
+clase(cla10, rec1, fecha(25,5,2022), [], 1500, aul4).
+
+% aula(CodigoAula, Descripcion, TieneCocinaEquipada, Capacidad)
+aula(aul1, 'Aula 1 - Gourmet - 10', si, 10).
+aula(aul2, 'Aula 2 - Basica - 8', no, 8).
+aula(aul3, 'Aula 3 - Basica - 8', no, 8).
+aula(aul4, 'Aula 4 - Gourmet - 10', si, 10).
+
+% receta(CodigoReceta, NombreReceta, PaisOrigen)
+receta(rec1, 'Ravioles Caseros', 'Italia').
+receta(rec2, 'Sushi Tradicional', 'Japon').
+receta(rec3, 'Tacos al Pastor', 'Mexico').
+receta(rec4, 'Croissant de Manteca', 'Francia').
+
+regla1(Receta1, Receta2):- clase(_,CodReceta,fecha(25,5,2022),_,_,_),
+    receta(CodReceta, Recetas,_),
+    member((Receta1,Receta2),Recetas).
+
+
+
+regla2(Lista):-findall(CodClase,
+                       (clase(CodClase,CodReceta,_,Puestos,_,_),
+                        receta(CodReceta,_,'Mexico'),
+                        length(Puestos,N),
+                        N\=0),
+                       Lista).
+
+
