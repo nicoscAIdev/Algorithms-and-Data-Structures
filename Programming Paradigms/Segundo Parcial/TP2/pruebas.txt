@@ -1,0 +1,34 @@
+funcion1
+Main> funcion1 "MT"
+1500.0
+Main> funcion1 "TDL"
+2500.0
+Main> funcion1 "DDL"
+2200.0
+Main> funcion1 "DM"
+1200.0
+Main> funcion1 "XX"
+0.0
+
+
+funcion2
+Main> funcion2[]
+0.0
+Main> funcion2["MT","MT","MT"]
+4500.0
+Main> funcion2["MT","MT","TDL","TDL"]
+8000.0
+Main> funcion2["MT","TDL","DDL","DDL","DM","DDL","DM"]
+13000.0
+
+funcion3
+Main> funcion3[1500.0,2500.0,2200.0,1500.0] 1000 2000
+[1500.0,1500.0]
+Main> funcion3[1500.0,2500.0,2200.0,1500.0] 1600 2300
+[2200.0]
+Main> funcion3[1500.0,2500.0,2200.0,1500.0] 1800 3000
+[2500.0,2200.0]
+Main> funcion3[1500.0,2500.0,2200.0,1500.0] 1000 3000
+[1500.0,2500.0,2200.0,1500.0]
+Main> funcion3[1500.0,2500.0,2200.0,1500.0] 1000 1200
+[]
