@@ -105,6 +105,13 @@ def calcular_porcentaje(cant, total):
         return cant * 100 / total
 
 
+def contar_por_continente(v):
+    conteo = [0] * 5
+    for pais in v:
+        conteo[pais.continente] += 1
+    return conteo
+
+
 def mostrar_menu():
     print("1. Generar listado ordenado por cantidad de medallas. ")
     print("2. Calcular el promedio de medallas de oro. ")
@@ -114,6 +121,11 @@ def mostrar_menu():
     print("0. Salir. ")
     opcion = int(input("Ingrese su opcion: "))
     return opcion
+
+
+def mostrar_conteo(cont):
+    for i in range(len(cont)):
+        print('Continente', i, ':', cont[i])
 
 
 def principal():
@@ -140,6 +152,11 @@ def principal():
             cant = contar_solo_bronce(v)
             porc = calcular_porcentaje(cant, len(v))
             print(f"El porcentaje es: {porc}%")
+
+        elif opcion == 5:
+            cont = contar_por_continente(v)
+            mostrar_conteo(cont)
+
 
 if __name__ == "__main__":
     principal()
