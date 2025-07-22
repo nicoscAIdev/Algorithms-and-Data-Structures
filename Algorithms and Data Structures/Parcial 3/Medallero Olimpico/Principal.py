@@ -130,9 +130,12 @@ def mostrar_conteo(cont):
 
 def principal():
     print("Medallero Olimpico")
+    # Inicializamos el programa con n cant de paises, 
+    # para guardarlo en un arreglo de n elementos
     n = validar_mayor_que(0, "Ingrese una cantidad de paises: ")
     v = [None] * n
     cargar_vector(v)
+#   Menu de opciones 
     opcion = -1
     while opcion != 0:
         opcion = mostrar_menu()
