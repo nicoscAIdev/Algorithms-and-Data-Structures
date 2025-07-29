@@ -23,10 +23,11 @@
 #    (Total: 4 filas por 15 columnas = 60 contadores).
 #    Mostrar solo los valores mayores a cero.
 
-# 5. A partir del arreglo, generar un archivo binario con todas las ventas cuyo monto total facturado sea mayor a un valor 'num' (ingresado por teclado)
-#    y que el tipo de venta no sea 2.
-#    Mostrar el archivo binario por consola, una venta por línea.
-#    Al final del listado mostrar el monto promedio facturado para esos clientes.
+# 5. A partir del arreglo, generar un archivo binario con todas 
+# las ventas cuyo monto total facturado sea mayor a un valor 
+# 'num' (ingresado por teclado) y que el tipo de venta no sea 2. 
+# Mostrar el archivo binario por consola, una venta por línea. 
+# Al final del listado mostrar el monto promedio facturado para esos clientes.
 
 # 6. A partir del arreglo, para un rango de marcas de auto (ingresado por teclado),
 #    determinar:
@@ -34,7 +35,7 @@
 #    - Qué porcentaje representan dichas cuotas sobre el total de cuotas pagas en general.
 
 from Registro import Consecionaria
-import random
+import random, os, pickle
 
 
 def mostrar_menu():
@@ -49,10 +50,10 @@ def mostrar_menu():
     return opcion
 
 
-def validar_mayor():
-    n = int(input("Ingrese la cantidad de ventas (debe ser mayor a 0): "))
-    while n < 0:
-        n = int(input("Ingrese la cantidad de ventas (debe ser mayor a 0): "))
+def validar_mayor_que(inf, mensaje):
+    n = int(input(mensaje))
+    while n < inf:
+        n = int(input(mensaje))
     return n
 
 
@@ -92,23 +93,71 @@ def mostrar_vector(vector):
 
 
 def buscar_nombre(vector, nombre):
-    n = len(vector)
-    encontrada = False
-    for i in range(n):
-        if vector[i].nombre_cliente == nombre:
-            venta = vector[i]
-            encontrada = True
-            inc_cuotas(venta, vector)
-            break
-    if encontrada == False:
-        print("No existe venta con ese nombre de cliente")
-        
+    izq, der = 0, len(vector) - 1
+    while izq <= der:
+        c = (izq + der) // 2
+        if nombre == vector[c].nombre_cliente:
+            return c
+        if nombre < vector[c].nombre_cliente:
+            der = c - 1
+        else:
+            izq = c + 1
+    return -1
 
-def inc_cuotas(venta, vector):
-    cuotas = int(input("Ingrese la cantidad de cuotas a incrementar: "))
-    venta.cant_cuotas += cuotas
-    mostrar_vector(vector)
 
+def generar_matriz(vector):
+    # lo 1ro es colum # el range son filas
+    matriz = [[0]*15 for fila in range(4)]
+    for venta in vector:
+        matriz[venta.id_tipo][venta.id_marca - 1] += venta.monto_total
+                    # marca (columna, ajustada con -1 porque arranca en 1).
+    return matriz
+
+
+def mostrar_matriz(matriz):
+    for fila in range(len(matriz)):
+        for columna in range(len(matriz[fila])):
+            if matriz[fila][columna] > 0:
+                print(matriz[fila][columna])
+
+
+def generar_archivo(fd,n,vector):
+# A partir del arreglo, generar un archivo binario con todas 
+# las ventas cuyo monto total facturado sea mayor a un valor 
+# 'num' (ingresado por teclado) y que el tipo de venta no sea 2. 
+    m = open(fd,"wb")
+    for venta in vector: 
+        if venta.monto_total > n and venta.id_tipo != 2:
+            pickle.dump(venta,m)
+    m.close()
+    print("Archivo generado. ")
+    pass
+
+
+def mostrar_archivo(fd):
+# Mostrar el archivo binario por consola, una venta por línea. 
+# Al final del listado mostrar el monto promedio facturado para esos clientes.
+    if os.path.exists(fd):
+        suma, cant = 0, 0        
+        m = open(fd, "rb")
+        tam = os.path.getsize(fd) # tamaño total del archivo (en bytes).
+        while m.tell() < tam:
+        #   m.tell() devuelve la posición actual del puntero (en bytes).
+            venta = pickle.load(m)
+            print(venta)
+            suma += venta.monto_total
+            cant += 1
+        m.close()
+        print("El promedio es: $", calcular_promedio(suma, cant))
+    else:
+        print("El archivo no existe. ")
+
+
+def calcular_promedio(suma, cant):
+    prom = 0
+    if cant != 0:
+        prom = suma/ cant
+    return prom
 
 
 def principal():
@@ -118,29 +167,36 @@ def principal():
         opcion = mostrar_menu()
 
         if opcion == 1:
-            n = validar_mayor()
+            n = validar_mayor_que(0, "Ingrese la cantidad de ventas (debe ser mayor a 0): ")
             vector = []
             cargar_vector(vector, n)
-
         
         elif opcion == 2:
             mostrar_vector(vector)
 
-
         elif opcion == 3:    
             nombre = input("Ingrese el nombre a buscar: ")
-            buscar_nombre(vector, nombre)
-
+            pos = buscar_nombre(vector, nombre)
+            if pos == -1:
+                print("No existe venta con ese nombre. ")
+            else:
+                cuotas = validar_mayor_que(-1, "Ingrese la cantidad de cuotas (debe ser mayor a 0): ")
+                vector[pos].cant_cuotas += cuotas
+                print("Venta encontrada: ", vector[pos])
+        
         elif opcion == 4:
-            pass
+            matriz = generar_matriz(vector)
+            mostrar_matriz(matriz)
 
         elif opcion == 5:
-            pass
+            fd = 'ventas.dat'
+            n = validar_mayor_que(0, "Ingrese el monto total (debe ser mayor a 0): ")
+            generar_archivo(fd, n, vector)
+            mostrar_archivo(fd)
 
         elif opcion == 6:
             pass
      
-    pass
 
 
 if __name__ == "__main__":
