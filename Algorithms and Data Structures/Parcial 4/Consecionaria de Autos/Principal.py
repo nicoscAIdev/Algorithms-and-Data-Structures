@@ -50,7 +50,65 @@ def mostrar_menu():
 
 
 def validar_mayor():
-    n = int(input("Ingrese el valor"))
+    n = int(input("Ingrese la cantidad de ventas (debe ser mayor a 0): "))
+    while n < 0:
+        n = int(input("Ingrese la cantidad de ventas (debe ser mayor a 0): "))
+    return n
+
+
+def cargar_vector(vector, n):
+    nomb = ("a", "b", "c", "d")
+    for i in range(n):
+        nombre_cliente = random.choice(nomb) + str(i)
+        id_tipo = random.randint(0,3)
+        id_marca = random.randint(1,15)
+        cant_cuotas = random.randint(12,36)
+        monto_total = random.randint(1000,50000)
+        venta = Consecionaria(nombre_cliente,id_tipo,id_marca,cant_cuotas,monto_total)
+        add_in_order(vector,venta)
+
+
+def add_in_order(vector, venta):
+    n = len(vector)
+    pos = n
+    izq, der = 0, n - 1
+    while izq <= der:
+        c = (izq + der) // 2
+        if venta.nombre_cliente == vector[c].nombre_cliente:
+            pos = c
+            break
+        if venta.nombre_cliente < vector[c].nombre_cliente:
+            der = c - 1
+        else:
+            izq = c + 1
+    if izq > der:
+        pos = izq
+    vector[pos:pos] = [venta]
+
+
+def mostrar_vector(vector):
+    for i in range(len(vector)):
+        print(vector[i])
+
+
+def buscar_nombre(vector, nombre):
+    n = len(vector)
+    encontrada = False
+    for i in range(n):
+        if vector[i].nombre_cliente == nombre:
+            venta = vector[i]
+            encontrada = True
+            inc_cuotas(venta, vector)
+            break
+    if encontrada == False:
+        print("No existe venta con ese nombre de cliente")
+        
+
+def inc_cuotas(venta, vector):
+    cuotas = int(input("Ingrese la cantidad de cuotas a incrementar: "))
+    venta.cant_cuotas += cuotas
+    mostrar_vector(vector)
+
 
 
 def principal():
@@ -61,14 +119,17 @@ def principal():
 
         if opcion == 1:
             n = validar_mayor()
-            
-            pass
+            vector = []
+            cargar_vector(vector, n)
+
         
         elif opcion == 2:
-            pass
+            mostrar_vector(vector)
 
-        elif opcion == 3:
-            pass
+
+        elif opcion == 3:    
+            nombre = input("Ingrese el nombre a buscar: ")
+            buscar_nombre(vector, nombre)
 
         elif opcion == 4:
             pass
