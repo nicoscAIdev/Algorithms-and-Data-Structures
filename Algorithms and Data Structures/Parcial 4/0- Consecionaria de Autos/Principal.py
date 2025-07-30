@@ -70,9 +70,7 @@ def cargar_vector(vector, n):
 
 
 def add_in_order(vector, venta):
-    n = len(vector)
-    pos = n
-    izq, der = 0, n - 1
+    izq, der = 0, len(vector) - 1
     while izq <= der:
         c = (izq + der) // 2
         if venta.nombre_cliente == vector[c].nombre_cliente:
@@ -168,7 +166,6 @@ def principal():
 
         if opcion == 1:
             n = validar_mayor_que(0, "Ingrese la cantidad de ventas (debe ser mayor a 0): ")
-            vector = []
             cargar_vector(vector, n)
         
         elif opcion == 2:
