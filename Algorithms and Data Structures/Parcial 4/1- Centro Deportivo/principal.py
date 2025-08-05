@@ -26,7 +26,7 @@ import random, os, pickle
 def mostrar_menu():
     print("1- Cargar un arreglo de n deportistas (n leído por teclado) ")
     print("2- Mostrar todos los datos del arreglo, uno por renglón: ")
-    print("3- Crear un vector de conteo con el monto acumulado de pago por beca a los deportistas.")
+    print("3- Agencia de Investiacion Crear un vector de conteo con el monto acumulado de pago por beca a los deportistas.")
     print("4- Crear una matriz de conteo [50 deportes][10 tipos de beca].")
     print("5- Buscar un deportista por nombre (ingresado por teclado).")
     print("6- Grabar en un archivo binario los datos de los deportistas con tipo de beca diferente de 0.")

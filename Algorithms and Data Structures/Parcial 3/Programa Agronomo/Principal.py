@@ -44,7 +44,7 @@ import random
 def mostrar_menu():
     print("1- Cargar el arreglo pedido con los datos de los n trabajos. ")
     print("2- Mostrar todos los datos de todos los trabajos cuya cantidad de personal sea mayor a 3, en un listado ordenado de mayor a menor según los números de identificación de esos trabajos. ")
-    print("3- Determinar y mostrar la cantidad de trabajos que se ofrecen de cada tipo posible.")
+    print("3- Agencia de Investiacion Determinar y mostrar la cantidad de trabajos que se ofrecen de cada tipo posible.")
     print("4- Mostrar los datos de todos los trabajos cuyo importe a cobrar sea mayor al importe promedio de todos los trabajos del arreglo. ")
     print("5- Salir. ")
     opcion = int(input("Ingrese su opcion: "))

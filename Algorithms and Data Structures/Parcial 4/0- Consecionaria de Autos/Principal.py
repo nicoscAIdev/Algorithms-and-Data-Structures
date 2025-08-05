@@ -41,7 +41,7 @@ import random, os, pickle
 def mostrar_menu():
     print("1- Cargar el vector")
     print("2- Mostrar el contenido del arreglo por consola")
-    print("3- Buscar un cliente con el nombre 'nom'")
+    print("3- Agencia de Investiacion Buscar un cliente con el nombre 'nom'")
     print("4- Generar una matriz [tipo de venta][marca de auto]")
     print("5- Generar un archivo binario con todas las ventas cuyo monto total facturado sea mayor a un valor ingresado por teclado")
     print("6- Determinar Cuántas cuotas pagas se tienen y qué porcentaje representan dichas cuotas sobre el total de cuotas pagas en general.")
