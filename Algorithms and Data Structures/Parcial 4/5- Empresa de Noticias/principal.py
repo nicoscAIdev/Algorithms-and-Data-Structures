@@ -135,8 +135,7 @@ def principal():
 
 
         if opcion == 5:
-            
-            generar_contador(fd, vector)
+            generar_contador(fd)
 
 
 
